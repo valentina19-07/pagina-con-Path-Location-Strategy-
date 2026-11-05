@@ -1,29 +1,33 @@
 import { TestBed } from '@angular/core/testing';
-import { AppComponent } from './app.component';
+import { provideRouter } from '@angular/router';
+import { App } from './app';
+import { routes } from './app.routes';
 
-describe('AppComponent', () => {
+describe('App', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AppComponent],
+      imports: [App],
+      providers: [provideRouter(routes)],
     }).compileComponents();
   });
 
   it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
+    const fixture = TestBed.createComponent(App);
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'pagina-path' title`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
+  it(`should have the 'Path' modo`, () => {
+    const fixture = TestBed.createComponent(App);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('pagina-path');
+    expect(app.modo).toEqual('Path');
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
+  it('should render the page navigation', () => {
+    const fixture = TestBed.createComponent(App);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, pagina-path');
+    expect(compiled.querySelector('nav')?.textContent).toContain('Proyectos');
+    expect(compiled.querySelector('nav')?.textContent).toContain('Contacto');
   });
 });
