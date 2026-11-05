@@ -34,7 +34,7 @@ jobs:
         run: npm ci
 
       - name: Run Unit Tests
-        run: npm test -- --no-watch
+        run: npm test -- --no-watch --browsers=ChromeHeadless
 
       - name: Build Angular
         run: npm run build -- --base-href "/${{ github.event.repository.name }}/"
