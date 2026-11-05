@@ -1,27 +1,32 @@
-# PaginaPath
+# Pagina con Path Location Strategy
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.17.
+Aplicación de ejemplo construida con Angular para presentar las secciones de
+inicio, proyectos y contacto usando rutas limpias.
 
-## Development server
+- Sitio publicado: https://valentina19-07.github.io/pagina-con-Path-Location-Strategy-/
+- Repositorio: https://github.com/valentina19-07/pagina-con-Path-Location-Strategy-
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Desarrollo local
 
-## Code scaffolding
+Instala las dependencias y ejecuta el servidor de desarrollo:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```bash
+npm ci
+npm start
+```
 
-## Build
+La aplicación estará disponible en `http://localhost:4200/`.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Pruebas y compilación
 
-## Running unit tests
+```bash
+npm test -- --no-watch
+npm run build
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Estrategia de enrutamiento
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Usa `PathLocationStrategy` (por defecto en Angular): rutas limpias sin `#`
+(`/home`, `/projects`, `/contact`). GitHub Pages es un servidor estático y devuelve 404 al
+recargar una ruta interna, así que el pipeline copia `index.html` como `404.html`.
+Así Angular arranca y resuelve la ruta. Se navega siempre con `routerLink`, nunca con `href`.
