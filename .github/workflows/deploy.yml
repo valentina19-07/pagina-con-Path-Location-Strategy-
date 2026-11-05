@@ -18,38 +18,30 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      # 1. Descargar el código
       - name: Checkout
         uses: actions/checkout@v4
 
-      # 2. Configurar Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 24
           cache: npm
 
-      # 3. Configurar GitHub Pages
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      # 4. Instalar dependencias
       - name: Install dependencies
         run: npm ci
 
-      # 5. Ejecutar pruebas unitarias
       - name: Run Unit Tests
-        run: npm test -- --no-watch --browsers=ChromeHeadless
+        run: npm test -- --no-watch
 
-      # 6. Generar build de Angular
       - name: Build Angular
         run: npm run build -- --base-href "/${{ github.event.repository.name }}/"
 
-      # 7. Copiar index.html a 404.html para soporte de PathLocationStrategy en GitHub Pages
-      - name: Copy index.html to 404.html for SPA routing
+      - name: Configure GitHub Pages fallback
         run: cp ./dist/pagina-path/browser/index.html ./dist/pagina-path/browser/404.html
 
-      # 8. Subir artefacto generado
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
